@@ -40,13 +40,11 @@
 
         <hr>
 
-        <p class="copyright-text" v-text="copyrightText"></p>
     </div>
 </template>
 
 <script>
     import AddSectionControl from "@/views/builder/add-controls/AddSectionControl";
-    import {MAIN_CONSTANTS} from "@/configs";
     import SectionContainer from "@/views/builder/SectionContainer";
     import FormBuilderBusiness from "@/mixins/form-builder-mixins";
     import FormConfiguration from "@/views/builder/FormConfiguration";
@@ -91,14 +89,5 @@
             }
         },
 
-        computed: {
-            /**
-             * Copyright Text
-             * @returns {string}
-             */
-            copyrightText() {
-                return MAIN_CONSTANTS.COPYRIGHT
-            }
-        }
     }
 </script>
