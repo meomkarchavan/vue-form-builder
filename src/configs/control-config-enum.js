@@ -99,6 +99,10 @@ const DROPDOWN_DATA_MODES = {
         val: 'api',
         description: "API - List Items from your own API",
     },
+    masters: {
+        val: 'masters',
+        description: "masters - List Items from databse collections",
+    },
 }
 
 /**
@@ -116,7 +120,7 @@ const FILE_UPLOAD_MODES = {
     },
 }
 
-export  {
+export {
     RADIO_CHECKBOX_POSITION,
     RADIO_CHECKBOX_STYLE,
 

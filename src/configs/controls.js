@@ -2,8 +2,8 @@
  * Supported Controls in Vue-Form-Builder
  * @author Phat Tran
  */
-import {STYLES} from "@/configs/styles";
-import {HELPER} from "@/libraries/helper";
+import { STYLES } from "@/configs/styles";
+import { HELPER } from "@/libraries/helper";
 import {
     DATE_PICKER_RETURN_TYPES, DATE_PICKER_START_DATES,
 
@@ -141,7 +141,7 @@ const CONTROLS = {
              * @var {ListItem[]} items
              */
             items: [], // for normal hard-list
-
+            mastersname: "", //masters name to fetch from db
             apiURL: "", // for api-request - must be entered
             apiTextKey: "text", // <option>TEXT</option>
             apiValueKey: "value", // <option value=value>...</option>
@@ -224,7 +224,7 @@ const CONTROLS = {
         name: "Label",
         description: "Simple label text show up in your Form",
         disableValue: true,
-        
+
         configData: {
             forAttribute: null, // `for` for any control? (except the Label)
 
