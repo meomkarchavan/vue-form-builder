@@ -134,14 +134,14 @@ const CONTROLS = {
         description: "Dropdown select from a list",
 
         configData: {
-            dataMode: DROPDOWN_DATA_MODES.list.val, // normal - api
+            dataMode: DROPDOWN_DATA_MODES.list.val, // normal - api - masters
             multiple: false, // is multiple selection
 
             /**
              * @var {ListItem[]} items
              */
             items: [], // for normal hard-list
-            mastersname: "", //masters name to fetch from db
+            masterName: "", // for masters name to fetch from db
             apiURL: "", // for api-request - must be entered
             apiTextKey: "text", // <option>TEXT</option>
             apiValueKey: "value", // <option value=value>...</option>
