@@ -21,18 +21,20 @@
 
     <div v-show="this.control.dataMode === listDataModes.masters.val">
       <div :class="styles.FORM.FORM_GROUP">
-        <!-- TODO add dropdown load data from cs query asign to from data -->
         <label>
           Masters Name
           <icon-tooltip icon="informationOutline" text="Your Masters Name" />
         </label>
-
-        <input
-          type="text"
-          placeholder="tech_degrees"
-          :class="styles.FORM.FORM_CONTROL"
-          v-model="control.apiURL"
-        />
+        <select :class="styles.FORM.FORM_CONTROL" v-model="control.masterName">
+          <option
+            v-for="master in masterData"
+            :key="master.id"
+            :class="styles.FORM.FORM_CONTROL"
+            :value="master.id"
+          >
+            {{ master.name }}
+          </option>
+        </select>
       </div>
     </div>
     <div v-show="this.control.dataMode === listDataModes.api.val">
@@ -140,6 +142,7 @@
 </template>
 
 <script>
+import MQL from "@/plugins/mql.js";
 import { CONTROL_SPECIAL_CONFIG_MIXIN } from "@/mixins/control-special-config-mixin";
 import { DROPDOWN_DATA_MODES } from "@/configs/control-config-enum";
 import ListItem from "@/libraries/list-item.class";
@@ -147,7 +150,23 @@ import ListItem from "@/libraries/list-item.class";
 export default {
   name: "DropdownConfigView",
   mixins: [CONTROL_SPECIAL_CONFIG_MIXIN],
-
+  data() {
+    return {
+      masterData: {},
+    };
+  },
+  created() {
+    new MQL()
+      .setActivity("o.[query_1xqHGwm3lHHAR48DqbGpgBuNxT5]")
+      .enablePageLoader(false)
+      .setData()
+      .fetch()
+      .then((res) => {
+        let result = res.getActivity("query_1xqHGwm3lHHAR48DqbGpgBuNxT5", true);
+        console.log(result);
+        this.masterData = result;
+      });
+  },
   methods: {
     /**
      * Add new List-Item for the Current Radio/Checkbox
@@ -163,7 +182,6 @@ export default {
       this.control.items.splice(index, 1);
     },
   },
-
   computed: {
     /**
      * Dropdown Data Modes List

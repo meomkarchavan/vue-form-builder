@@ -1,12 +1,16 @@
-import {FormIcon} from "@/libraries/icon-facade";
+import { FormIcon } from "@/libraries/icon-facade";
 import FormBuilder from "@/components/FormBuilder";
 import FormRenderer from "@/components/FormRenderer";
-import {CONTROLS} from "@/configs/controls";
-import {STYLES} from "@/configs/styles";
-import {VALIDATION_RULES} from "@/configs/validation";
-import {IRegisterProperties} from "@/interfaces/register-properties.interface.ts";
+import { CONTROLS } from "@/configs/controls";
+import { STYLES } from "@/configs/styles";
+import { VALIDATION_RULES } from "@/configs/validation";
+import { IRegisterProperties } from "@/interfaces/register-properties.interface.ts";
 
-const VueFormBuilderInstaller = function(
+
+import mqlOptions from '@/plugins/mqlOptions.js'
+
+
+const VueFormBuilderInstaller = function (
     Vue,
     properties = {}
 ) {
@@ -18,8 +22,8 @@ const VueFormBuilderInstaller = function(
      *
      * @type {IRegisterProperties}
      */
-    const defaultProperties  = {
-        globalInjection : true,
+    const defaultProperties = {
+        globalInjection: true,
         validationErrorShowAlert: true,
         validationErrorAlertText: "Your form got error(s), please fix it and submit again"
     };
@@ -63,6 +67,12 @@ const VueFormBuilderInstaller = function(
     if (!properties.hasOwnProperty('globalInjection') || properties.globalInjection) {
         Vue.component('FormBuilder', FormBuilder);
         Vue.component('FormRenderer', FormRenderer);
+        var baseURL = '/server'
+        var cdnBaseURL = '/cdnserver'
+        Vue.use(mqlOptions, {
+            baseURL: baseURL,
+            cdnBaseURL: cdnBaseURL,
+        })
     }
 
     // Mark as registered
@@ -73,7 +83,7 @@ const VueFormBuilderInstaller = function(
  * Extending Control from the users
  * @param {Object} moreControlObject
  */
-const extendingControls = function(moreControlObject) {
+const extendingControls = function (moreControlObject) {
     // validation if it does conflict or not
     const allKeys = Object.keys(moreControlObject)
     for (let iKey = 0; iKey < allKeys.length; iKey++) {
@@ -109,6 +119,6 @@ const extendingValidations = function (validationObj) {
     Object.assign(VALIDATION_RULES, validationObj)
 }
 
-export  {
+export {
     VueFormBuilderInstaller
 }

@@ -1,4 +1,4 @@
-import {VueFormBuilderInstaller} from "@/installer";
+import { VueFormBuilderInstaller } from "@/installer";
 import FormBuilder from "@/components/FormBuilder";
 import FormRenderer from "@/components/FormRenderer";
 import BaseControlSkeleton from "@/skeletons/controls/BaseControlSkeleton";
@@ -10,6 +10,8 @@ import '@/assets/v-form-builder.css'
 const VueFormBuilderPlugin = {
     install: VueFormBuilderInstaller
 };
+
+
 
 // For Browser-Vue's purpose
 // Export the VueFormBuilderPlugin to let developers register it later.
