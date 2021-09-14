@@ -49,7 +49,7 @@ export default class Validation {
 
             rules[controlName] = controlItem.validations
         })
-        console.log(rules);
+
         this.rules = rules
     }
 
