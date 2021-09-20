@@ -1,6 +1,6 @@
 import Validation from "@/libraries/validation";
-import {EVENT_CONSTANTS} from "@/configs/events";
-import {ALERT_DIALOG} from "@/libraries/alert-dialog";
+import { EVENT_CONSTANTS } from "@/configs/events";
+import { ALERT_DIALOG } from "@/libraries/alert-dialog";
 
 const VALIDATION_MIXIN = {
     data: () => ({
@@ -17,7 +17,6 @@ const VALIDATION_MIXIN = {
 
             // run the validation
             const result = this.$form.Validation.run()
-
             // field-error handling
             if (result.errors()) {
                 // use set for reactive...
@@ -39,6 +38,7 @@ const VALIDATION_MIXIN = {
      * Dependencies Injection into the Form-Renderer.
      */
     created() {
+        console.log("form data: ", this.formData);
         // create validation instance
         this.$form.Validation = new Validation(
             this.valueContainer,
@@ -51,4 +51,4 @@ const VALIDATION_MIXIN = {
     }
 }
 
-export {VALIDATION_MIXIN}
+export { VALIDATION_MIXIN }

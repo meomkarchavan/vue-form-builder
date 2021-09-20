@@ -35,6 +35,7 @@ export default class Validation {
      * @param {{validations: ValidationRule[]}} controls
      */
     setRules(controls) {
+        console.log("all controls", controls, Object.keys(controls).length);
         const rules = {}
 
         // traversal all control and pick the validations info
