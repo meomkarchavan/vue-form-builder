@@ -4,6 +4,14 @@
       {{ template.name }}
 
       <FormRenderer
+        v-if="currentSection == 0"
+        :key="sections[currentSection].uniqueId"
+        :class="{ 'col-md-9': isShowData, 'col-md-12': !isShowData }"
+        :form-configuration="template.formData"
+        v-model="tempData"
+      />
+      <FormRenderer
+        v-if="currentSection == 1"
         :key="sections[currentSection].uniqueId"
         :class="{ 'col-md-9': isShowData, 'col-md-12': !isShowData }"
         :form-configuration="template.formData"
@@ -105,6 +113,9 @@ export default {
     controls: {},
     sections: {},
   }),
+  destroyed() {
+    this.$formEvent.$off("checkEligible");
+  },
   created() {
     // storing sections
     let tempSections = this.template.formData.sections;
@@ -121,9 +132,12 @@ export default {
     console.log("This form Data: ", this.template.formData);
     this.$formEvent.$on("checkEligible", (payLoad) => {
       console.log("checkEligible: ", payLoad, this.tempData);
-      this.currentSection += 1;
-      this.setSection();
+      if (this.currentSection === 0) {
+        this.currentSection += 1;
+        this.setSection();
+      }
     });
+
     this.$formEvent.$on("checkPersonal", (payLoad) => {
       console.log("checkPersonal: ", payLoad, this.tempData);
 
